@@ -5,7 +5,10 @@
       <SelectionState runConfigName="app">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="ContactList">
+      <SelectionState runConfigName="ContactDetail">
+        <option name="selectionMode" value="DROPDOWN" />
+      </SelectionState>
+      <SelectionState runConfigName="Home">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
     </selectionStates>

@@ -19,17 +19,22 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 
+
 @Preview
 @Composable
-fun ContactList(modifier: Modifier = Modifier) {
+fun ContactList(
+    modifier: Modifier = Modifier,
+    onAdd: () -> Unit = {}
+) {
     val contacts = remember {
         mutableStateListOf("Pedro")
     }
+
     Scaffold(
         floatingActionButton = {
             FloatingActionButton(
                 onClick = {
-                        contacts.add("Luis")
+                    onAdd()
                 }
             ) {
                 Icon(Icons.Default.Add, contentDescription = null)
@@ -39,9 +44,11 @@ fun ContactList(modifier: Modifier = Modifier) {
         LazyColumn(modifier = modifier.padding(padding)) {
             items(contacts) { contact ->
                 Card(modifier = Modifier.padding(8.dp)) {
-                    Row(modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(8.dp)) {
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(8.dp)
+                    ) {
                         Text(contact)
                     }
                 }
