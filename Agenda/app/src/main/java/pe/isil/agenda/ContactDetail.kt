@@ -18,24 +18,24 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavController
-import androidx.navigation.compose.rememberNavController
+
 
 @Preview
 @Composable
 fun ContactDetail(
     modifier: Modifier = Modifier,
-    navController: NavController = rememberNavController()
-    ) {
+    contact: String? = null,
+    onSave: (String) -> Unit = {}
+) {
 
     val name = remember {
-        mutableStateOf("")
+        mutableStateOf(contact ?: "")
     }
-    Scaffold (
+    Scaffold(
         floatingActionButton = {
             FloatingActionButton(
                 onClick = {
-                    navController.popBackStack()
+                    onSave(name.value)
                 }
             ) {
                 Icon(Icons.Default.Done, contentDescription = null)
@@ -49,7 +49,9 @@ fun ContactDetail(
             verticalArrangement = Arrangement.Center
         ) {
             OutlinedTextField(
-                modifier = modifier.fillMaxWidth().padding(8.dp),
+                modifier = modifier
+                    .fillMaxWidth()
+                    .padding(8.dp),
                 placeholder = {
                     Text("Name")
                 },
