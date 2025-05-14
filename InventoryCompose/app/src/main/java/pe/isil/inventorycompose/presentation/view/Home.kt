@@ -18,6 +18,10 @@ fun Home() {
         mutableStateOf<List<Product>>(emptyList())
     }
 
+    val selectedProduct = remember {
+        mutableStateOf<Product?>(null)
+    }
+
     NavHost(navController, startDestination = "product_list") {
 
         composable("product_list") {
@@ -25,17 +29,33 @@ fun Home() {
                 products = products.value,
                 onDelete = { product ->
                     products.value = products.value.filterNot {
-                        product.name == it.name
+                        product.id == it.id
                     }
-                }) {
+                },
+                onTap = { product ->
+                    selectedProduct.value = product
+                    navController.navigate("product_detail")
+                }
+            ) {
+                selectedProduct.value = null
                 navController.navigate("product_detail")
             }
         }
 
         composable("product_detail") {
-            ProductDetailView(onSave = { product ->
-                products.value += product
-            }) {
+            ProductDetailView(
+                selectedProduct = selectedProduct.value,
+                onSave = { product ->
+                    products.value =
+                        if (selectedProduct.value == null) {
+                            products.value + product
+                        } else {
+                            products.value.map { it ->
+                                if (it.id == product.id) product else it
+                            }
+                        }
+
+                }) {
                 navController.popBackStack()
             }
         }

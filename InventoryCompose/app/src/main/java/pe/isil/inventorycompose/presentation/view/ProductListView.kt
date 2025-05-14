@@ -22,12 +22,14 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import pe.isil.inventorycompose.domain.model.Product
+import java.util.UUID
 
 @Composable
 fun ProductListView(
     modifier: Modifier = Modifier,
     products: List<Product> = emptyList(),
     onDelete: (Product) -> Unit,
+    onTap: (Product) -> Unit,
     onAdd: () -> Unit = {}
 ) {
 
@@ -44,7 +46,9 @@ fun ProductListView(
     ) { padding ->
         LazyColumn(modifier = modifier.padding(padding)) {
             items(products) { product ->
-                ProductListItemView(product) { it ->
+                ProductListItemView(product, onTap = {
+                    onTap(product)
+                }) { it ->
                     onDelete(it)
                 }
             }
@@ -55,9 +59,15 @@ fun ProductListView(
 @Composable
 fun ProductListItemView(
     product: Product,
+    onTap: () -> Unit = {},
     onDelete: (Product) -> Unit = {}
 ) {
-    Card(modifier = Modifier.padding(8.dp)) {
+    Card(
+        modifier = Modifier.padding(8.dp),
+        onClick = {
+            onTap()
+        }
+        ) {
         Row(
             modifier = Modifier
                 .fillMaxWidth()
@@ -83,5 +93,11 @@ fun ProductListItemView(
 @Preview
 @Composable
 fun Preview() {
-    ProductListItemView(Product(name = "Laptop", quantity = 5))
+    ProductListItemView(
+        Product(
+            id = UUID.randomUUID().toString(),
+            name = "Laptop",
+            quantity = 5
+        )
+    )
 }

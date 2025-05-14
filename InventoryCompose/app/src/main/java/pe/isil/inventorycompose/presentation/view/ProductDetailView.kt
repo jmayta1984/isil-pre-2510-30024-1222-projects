@@ -19,21 +19,22 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import pe.isil.inventorycompose.domain.model.Product
+import java.util.UUID
 
-@Preview
 @Composable
 fun ProductDetailView(
     modifier: Modifier = Modifier,
-    onSave: (Product) -> Unit = {},
-    onBack: () -> Unit = {}
+    selectedProduct: Product?,
+    onSave: (Product) -> Unit,
+    onBack: () -> Unit
 ) {
 
     val name = remember {
-        mutableStateOf("")
+        mutableStateOf(selectedProduct?.name ?: "")
     }
 
     val quantity = remember {
-        mutableStateOf("")
+        mutableStateOf(selectedProduct?.quantity?.toString() ?: "")
     }
 
     Scaffold(
@@ -41,7 +42,11 @@ fun ProductDetailView(
             FloatingActionButton(
                 onClick = {
                     quantity.value.toIntOrNull()?.let { it ->
-                        val product = Product(name = name.value, quantity = it)
+                        val product = Product(
+                            id = selectedProduct?.id ?: UUID.randomUUID().toString(),
+                            name = name.value,
+                            quantity = it
+                        )
                         onSave(product)
                         onBack()
                     }
