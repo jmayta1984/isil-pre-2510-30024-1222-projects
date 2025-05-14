@@ -17,22 +17,22 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import pe.isil.inventorycompose.domain.model.Product
-import java.util.UUID
+import pe.isil.inventorycompose.presentation.viewmodel.ProductListViewModel
 
 @Composable
 fun ProductListView(
     modifier: Modifier = Modifier,
-    products: List<Product> = emptyList(),
-    onDelete: (Product) -> Unit,
+    viewModel: ProductListViewModel,
     onTap: (Product) -> Unit,
     onAdd: () -> Unit = {}
 ) {
 
+    val products = viewModel.products.collectAsState()
     Scaffold(
         floatingActionButton = {
             FloatingActionButton(
@@ -45,11 +45,11 @@ fun ProductListView(
         }
     ) { padding ->
         LazyColumn(modifier = modifier.padding(padding)) {
-            items(products) { product ->
+            items(products.value) { product ->
                 ProductListItemView(product, onTap = {
                     onTap(product)
                 }) { it ->
-                    onDelete(it)
+                    viewModel.deleteProduct(product)
                 }
             }
         }
@@ -88,16 +88,4 @@ fun ProductListItemView(
             }
         }
     }
-}
-
-@Preview
-@Composable
-fun Preview() {
-    ProductListItemView(
-        Product(
-            id = UUID.randomUUID().toString(),
-            name = "Laptop",
-            quantity = 5
-        )
-    )
 }

@@ -13,10 +13,13 @@ import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import pe.isil.inventorycompose.domain.model.Product
 import pe.isil.inventorycompose.presentation.viewmodel.ProductDetailViewModel
 import java.util.UUID
@@ -24,35 +27,28 @@ import java.util.UUID
 @Composable
 fun ProductDetailView(
     modifier: Modifier = Modifier,
-    productDetailViewModel: ProductDetailViewModel = ProductDetailViewModel(),
+    viewModel: ProductDetailViewModel,
     selectedProduct: Product?,
     onSave: (Product) -> Unit,
     onBack: () -> Unit
 ) {
 
-    val name = remember {
-        mutableStateOf(selectedProduct?.name ?: "")
-    }
+    val name = viewModel.name.collectAsState()
+    val quantity = viewModel.quantity.collectAsState()
+    val error = viewModel.errorMessage.collectAsState()
 
-    val quantity = remember {
-        mutableStateOf(selectedProduct?.quantity?.toString() ?: "")
-    }
+    viewModel.updateName(selectedProduct?.name ?: "")
+    viewModel.updateQuantity(selectedProduct?.quantity?.toString() ?: "")
+
 
     Scaffold(
         floatingActionButton = {
             FloatingActionButton(
                 onClick = {
-                    quantity.value.toIntOrNull()?.let { it ->
-                        val product = Product(
-                            id = selectedProduct?.id ?: UUID.randomUUID().toString(),
-                            name = name.value,
-                            quantity = it
-                        )
-                        onSave(product)
+                    viewModel.validate(selectedProduct?.id)?.let { it ->
+                        onSave(it)
                         onBack()
                     }
-
-
                 }
             ) {
                 Icon(Icons.Default.Save, contentDescription = null)
@@ -68,7 +64,7 @@ fun ProductDetailView(
             OutlinedTextField(
                 name.value,
                 onValueChange = {
-                    name.value = it
+                    viewModel.updateName(it)
                 },
                 placeholder = {
                     Text("Name")
@@ -81,7 +77,7 @@ fun ProductDetailView(
             OutlinedTextField(
                 quantity.value,
                 onValueChange = {
-                    quantity.value = it
+                    viewModel.updateQuantity(it)
                 },
                 placeholder = {
                     Text("Quantity")
@@ -90,6 +86,14 @@ fun ProductDetailView(
                     .fillMaxWidth()
                     .padding(8.dp)
             )
+
+            error.value?.let {
+                Text(
+                    it,
+                    modifier = Modifier.padding(8.dp),
+                    color = Color.Red
+                )
+            }
 
         }
     }

@@ -4,34 +4,31 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import pe.isil.inventorycompose.domain.model.Product
+import pe.isil.inventorycompose.presentation.viewmodel.ProductDetailViewModel
+import pe.isil.inventorycompose.presentation.viewmodel.ProductListViewModel
 
 @Preview
 @Composable
 fun Home() {
     val navController = rememberNavController()
 
-    val products = remember {
-        mutableStateOf<List<Product>>(emptyList())
-    }
-
     val selectedProduct = remember {
         mutableStateOf<Product?>(null)
     }
+
+    val productDetailViewModel: ProductDetailViewModel = viewModel ()
+    val productListViewModel: ProductListViewModel = viewModel ()
 
     NavHost(navController, startDestination = "product_list") {
 
         composable("product_list") {
             ProductListView(
-                products = products.value,
-                onDelete = { product ->
-                    products.value = products.value.filterNot {
-                        product.id == it.id
-                    }
-                },
+                viewModel = productListViewModel,
                 onTap = { product ->
                     selectedProduct.value = product
                     navController.navigate("product_detail")
@@ -45,14 +42,12 @@ fun Home() {
         composable("product_detail") {
             ProductDetailView(
                 selectedProduct = selectedProduct.value,
+                viewModel = productDetailViewModel,
                 onSave = { product ->
-                    products.value =
                         if (selectedProduct.value == null) {
-                            products.value + product
+                            productListViewModel.addProduct(product)
                         } else {
-                            products.value.map { it ->
-                                if (it.id == product.id) product else it
-                            }
+                            productListViewModel.updateProduct(product)
                         }
 
                 }) {
