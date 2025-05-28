@@ -6,6 +6,11 @@ import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.ShoppingCart
+import androidx.compose.material.icons.sharp.Favorite
+import androidx.compose.material.icons.sharp.FavoriteBorder
+import androidx.compose.material.icons.sharp.Home
+import androidx.compose.material.icons.sharp.Person
+import androidx.compose.material.icons.sharp.ShoppingCart
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
@@ -27,10 +32,30 @@ fun Navigation() {
     val navController = rememberNavController()
 
     val navigationItems = listOf(
-        NavigationItem(name = "Home", icon = Icons.Default.Home, route = "home"),
-        NavigationItem(name = "Favorites", icon = Icons.Default.Favorite, route = "favorites"),
-        NavigationItem(name = "Cart", icon = Icons.Default.ShoppingCart, route = "cart"),
-        NavigationItem(name = "Profile", icon = Icons.Default.Person, route = "profile")
+        NavigationItem(
+            name = "Home",
+            selectedIcon = Icons.Default.Home,
+            icon = Icons.Sharp.Home,
+            route = "home"
+        ),
+        NavigationItem(
+            name = "Favorites",
+            selectedIcon = Icons.Default.Favorite,
+            icon = Icons.Sharp.Favorite,
+            route = "favorites"
+        ),
+        NavigationItem(
+            name = "Cart",
+            selectedIcon = Icons.Default.ShoppingCart,
+            icon = Icons.Sharp.ShoppingCart,
+            route = "cart"
+        ),
+        NavigationItem(
+            name = "Profile",
+            selectedIcon = Icons.Default.Person,
+            icon = Icons.Sharp.Person,
+            route = "profile"
+        )
 
     )
 
@@ -48,7 +73,15 @@ fun Navigation() {
                             navController.navigate(item.route)
                         },
                         icon = {
-                            Icon(item.icon, contentDescription = null)
+                            Icon(
+
+                                if (selectedIndex.value == index) {
+                                    item.selectedIcon
+                                } else {
+                                    item.icon
+                                }, contentDescription = null,
+
+                            )
                         },
                         label = {
                             Text(item.name)
@@ -76,5 +109,6 @@ fun Navigation() {
 data class NavigationItem(
     val name: String,
     val icon: ImageVector,
+    val selectedIcon: ImageVector,
     val route: String
 )
