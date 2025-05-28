@@ -9,6 +9,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import pe.isil.inventorycompose.domain.model.Product
+import pe.isil.inventorycompose.presentation.PresentationModule
 import pe.isil.inventorycompose.presentation.viewmodel.ProductDetailViewModel
 import pe.isil.inventorycompose.presentation.viewmodel.ProductListViewModel
 
@@ -21,8 +22,10 @@ fun Home() {
         mutableStateOf<Product?>(null)
     }
 
-    val productDetailViewModel: ProductDetailViewModel = viewModel ()
-    val productListViewModel: ProductListViewModel = viewModel ()
+    val productDetailViewModel: ProductDetailViewModel = viewModel()
+
+    val productListViewModel: ProductListViewModel = PresentationModule.getProductListViewModel()
+    productListViewModel.fetchProducts()
 
     NavHost(navController, startDestination = "product_list") {
 
@@ -44,11 +47,11 @@ fun Home() {
                 selectedProduct = selectedProduct.value,
                 viewModel = productDetailViewModel,
                 onSave = { product ->
-                        if (selectedProduct.value == null) {
-                            productListViewModel.addProduct(product)
-                        } else {
-                            productListViewModel.updateProduct(product)
-                        }
+                    if (selectedProduct.value == null) {
+                        productListViewModel.addProduct(product)
+                    } else {
+                        productListViewModel.updateProduct(product)
+                    }
 
                 }) {
                 navController.popBackStack()

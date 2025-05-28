@@ -24,6 +24,15 @@ class ProductRepository(private val productDao: ProductDao) {
         )
     }
 
+    fun updateProduct(product: Product) {
+        productDao.updateProduct(
+            ProductEntity(
+                id = product.id,
+                name = product.name,
+                quantity = product.quantity)
+        )
+    }
+
     fun fetchProducts(): List<Product>{
         return productDao.fetchProducts().map { entity ->
             Product(id = entity.id, name =  entity.name, quantity =  entity.quantity)
