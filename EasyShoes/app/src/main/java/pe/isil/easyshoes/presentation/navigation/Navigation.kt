@@ -7,9 +7,6 @@ import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.ShoppingCart
-import androidx.compose.material.icons.outlined.Favorite
-import androidx.compose.material.icons.sharp.Favorite
-import androidx.compose.material.icons.sharp.FavoriteBorder
 import androidx.compose.material.icons.sharp.Home
 import androidx.compose.material.icons.sharp.Person
 import androidx.compose.material.icons.sharp.ShoppingCart
@@ -24,10 +21,12 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import pe.isil.easyshoes.presentation.view.HomeView
+import pe.isil.easyshoes.presentation.di.PresentationModule.getHomeViewModel
+import pe.isil.easyshoes.presentation.views.HomeView
 
 @Preview
 @Composable
@@ -100,7 +99,7 @@ fun Navigation() {
             startDestination = "home"
         ) {
             composable("home") {
-                HomeView()
+                HomeView(getHomeViewModel())
             }
             composable("product_detail") {}
             composable("favorites") { }
