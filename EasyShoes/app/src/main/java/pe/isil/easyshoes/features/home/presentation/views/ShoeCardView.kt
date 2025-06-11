@@ -1,4 +1,4 @@
-package pe.isil.easyshoes.presentation.views
+package pe.isil.easyshoes.features.home.presentation.views
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -13,7 +13,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
-import pe.isil.easyshoes.domain.entities.Shoe
+import pe.isil.easyshoes.features.home.domain.entities.Shoe
 
 @Composable
 fun ShoeCardView(shoe: Shoe, onSelect: () -> Unit) {

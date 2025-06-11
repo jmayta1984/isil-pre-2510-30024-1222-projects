@@ -1,4 +1,4 @@
-package pe.isil.easyshoes.data.remote
+package pe.isil.easyshoes.features.home.data.remote
 
 import retrofit2.Response
 import retrofit2.http.GET

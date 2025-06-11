@@ -1,4 +1,4 @@
-package pe.isil.easyshoes.presentation.navigation
+package pe.isil.easyshoes.features.home.presentation.navigation
 
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
@@ -24,10 +24,10 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import pe.isil.easyshoes.domain.entities.Shoe
-import pe.isil.easyshoes.presentation.di.PresentationModule.getHomeViewModel
-import pe.isil.easyshoes.presentation.views.HomeView
-import pe.isil.easyshoes.presentation.views.ShoeDetailView
+import pe.isil.easyshoes.features.home.domain.entities.Shoe
+import pe.isil.easyshoes.features.home.presentation.di.PresentationModule.getHomeViewModel
+import pe.isil.easyshoes.features.home.presentation.views.HomeView
+import pe.isil.easyshoes.features.home.presentation.views.ShoeDetailView
 
 @Preview
 @Composable

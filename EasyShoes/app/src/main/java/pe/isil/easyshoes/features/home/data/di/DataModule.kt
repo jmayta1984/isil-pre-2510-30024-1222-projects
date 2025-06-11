@@ -1,8 +1,8 @@
-package pe.isil.easyshoes.data.di
+package pe.isil.easyshoes.features.home.data.di
 
-import pe.isil.easyshoes.data.remote.ApiConstants
-import pe.isil.easyshoes.data.remote.ShoeService
-import pe.isil.easyshoes.data.repositories.ShoeRepository
+import pe.isil.easyshoes.features.home.data.remote.ApiConstants
+import pe.isil.easyshoes.features.home.data.remote.ShoeService
+import pe.isil.easyshoes.features.home.data.repositories.ShoeRepository
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 

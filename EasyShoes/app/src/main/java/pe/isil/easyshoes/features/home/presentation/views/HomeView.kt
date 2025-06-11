@@ -1,4 +1,4 @@
-package pe.isil.easyshoes.presentation.views
+package pe.isil.easyshoes.features.home.presentation.views
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -29,8 +29,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil3.compose.rememberAsyncImagePainter
 import pe.isil.easyshoes.R
-import pe.isil.easyshoes.domain.entities.Shoe
-import pe.isil.easyshoes.presentation.viewmodels.HomeViewModel
+import pe.isil.easyshoes.features.home.domain.entities.Shoe
+import pe.isil.easyshoes.features.home.presentation.viewmodels.HomeViewModel
 
 
 @Composable

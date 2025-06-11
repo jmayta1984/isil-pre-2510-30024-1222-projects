@@ -1,4 +1,4 @@
-package pe.isil.easyshoes.domain.entities
+package pe.isil.easyshoes.features.home.domain.entities
 
 data class Shoe (
     val id: Int,
