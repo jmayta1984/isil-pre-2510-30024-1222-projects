@@ -17,10 +17,11 @@ import pe.isil.easyshoes.domain.entities.Shoe
 
 @Composable
 fun ShoeCardView(shoe: Shoe, onSelect: () -> Unit) {
-    Card (modifier = Modifier.padding(8.dp), onClick = {
+    Card(modifier = Modifier.padding(8.dp), onClick = {
         onSelect()
     }) {
-        Row (modifier = Modifier.fillMaxWidth(),
+        Row(
+            modifier = Modifier.fillMaxWidth(),
             verticalAlignment = Alignment.CenterVertically
         ) {
             AsyncImage(
