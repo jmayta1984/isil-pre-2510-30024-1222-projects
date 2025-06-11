@@ -5,5 +5,6 @@ data class Shoe (
     val name: String,
     val brand: String,
     val price: Int,
-    val image: String
+    val image: String,
+    val description: String
 )

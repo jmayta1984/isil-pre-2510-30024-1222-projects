@@ -7,9 +7,8 @@ data class ShoeDto(
     val name: String,
     val brand: String,
     val price: Int,
-    val image: String
-
-
+    val image: String,
+    val description: String
 ) {
     fun toDomain(): Shoe {
         return Shoe(
@@ -17,6 +16,7 @@ data class ShoeDto(
             name = name,
             brand = brand,
             price = price,
-            image = image)
+            image = image,
+            description = description)
     }
 }
