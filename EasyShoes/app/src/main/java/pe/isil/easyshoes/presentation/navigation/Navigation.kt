@@ -70,6 +70,9 @@ fun Navigation() {
     val selectedShoe = remember {
         mutableStateOf<Shoe?>(null)
     }
+
+    val homeViewModel = getHomeViewModel()
+    homeViewModel.getShoes()
     Scaffold(
         bottomBar = {
             NavigationBar {
@@ -105,7 +108,10 @@ fun Navigation() {
             startDestination = "home"
         ) {
             composable("home") {
-                HomeView(getHomeViewModel())
+                HomeView(homeViewModel) {
+                    selectedShoe.value = it
+                    navController.navigate("product_detail")
+                }
             }
             composable("product_detail") {
                 selectedShoe.value?.let { shoe ->

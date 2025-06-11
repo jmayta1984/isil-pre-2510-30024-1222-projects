@@ -34,17 +34,20 @@ import androidx.compose.ui.unit.sp
 import coil3.compose.AsyncImage
 import coil3.compose.rememberAsyncImagePainter
 import pe.isil.easyshoes.R
+import pe.isil.easyshoes.domain.entities.Shoe
 import pe.isil.easyshoes.presentation.viewmodels.HomeViewModel
 
 
 @Composable
-fun HomeView(viewModel: HomeViewModel){
+fun HomeView(
+    viewModel: HomeViewModel,
+    onSelect: (Shoe) -> Unit
+    ){
     val search = remember {
         mutableStateOf("")
     }
 
     val shoes = viewModel.shoes.collectAsState()
-    viewModel.getShoes()
 
 
     Column (modifier = Modifier.fillMaxSize().padding(8.dp)) {
@@ -83,7 +86,9 @@ fun HomeView(viewModel: HomeViewModel){
         }
         LazyColumn {
             items(shoes.value) { shoe ->
-                ShoeCardView(shoe = shoe)
+                ShoeCardView(shoe = shoe) {
+                    onSelect(shoe)
+                }
             }
         }
     }
