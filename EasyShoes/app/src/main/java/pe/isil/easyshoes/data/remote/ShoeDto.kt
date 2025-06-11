@@ -1,6 +1,6 @@
 package pe.isil.easyshoes.data.remote
 
-import pe.isil.easyshoes.domian.entities.Shoe
+import pe.isil.easyshoes.domain.entities.Shoe
 
 data class ShoeDto(
     val id: Int,

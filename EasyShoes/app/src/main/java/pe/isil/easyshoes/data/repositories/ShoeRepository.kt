@@ -3,7 +3,7 @@ package pe.isil.easyshoes.data.repositories
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import pe.isil.easyshoes.data.remote.ShoeService
-import pe.isil.easyshoes.domian.entities.Shoe
+import pe.isil.easyshoes.domain.entities.Shoe
 
 class ShoeRepository(private val shoeService: ShoeService) {
 
