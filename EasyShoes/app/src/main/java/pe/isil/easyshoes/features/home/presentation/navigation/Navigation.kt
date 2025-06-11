@@ -24,6 +24,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import pe.isil.easyshoes.features.cart.presentation.CartView
+import pe.isil.easyshoes.features.favorites.presentation.FavoritesView
 import pe.isil.easyshoes.features.home.domain.entities.Shoe
 import pe.isil.easyshoes.features.home.presentation.di.PresentationModule.getHomeViewModel
 import pe.isil.easyshoes.features.home.presentation.views.HomeView
@@ -117,8 +119,12 @@ fun Navigation() {
                     ShoeDetailView(shoe)
                 }
             }
-            composable("favorites") { }
-            composable("cart") {}
+            composable("favorites") {
+                FavoritesView()
+            }
+            composable("cart") {
+                CartView()
+            }
             composable("profile") {}
         }
     }
