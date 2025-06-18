@@ -18,4 +18,11 @@ class FavoritesViewModel(private val favoriteShoeRepository: FavoriteShoeReposit
             _favoriteShoes.value = favoriteShoeRepository.fetchAllFavoriteShoes()
         }
     }
+
+    fun removeFavoriteShoe(favoriteShoe: FavoriteShoe) {
+        viewModelScope.launch {
+            favoriteShoeRepository.deleteFavoriteShoe(favoriteShoe)
+            getFavoriteShoes() // Refresh the list after deletion
+        }
+    }
 }

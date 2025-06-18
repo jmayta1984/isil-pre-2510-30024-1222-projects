@@ -24,7 +24,8 @@ import pe.isil.easyshoes.features.favorites.domain.FavoriteShoe
 
 @Composable
 fun FavoriteShoeCardView(
-    favorite: FavoriteShoe
+    favorite: FavoriteShoe,
+    onDelete: () -> Unit
 ) {
     Card(modifier = Modifier.padding(8.dp), onClick = {
     }) {
@@ -53,7 +54,8 @@ fun FavoriteShoeCardView(
                 }
             }
 
-            IconButton(onClick = {}) {
+            IconButton(onClick = onDelete
+            ) {
                 Icon(Icons.Default.MoreVert, contentDescription = null)
             }
 
