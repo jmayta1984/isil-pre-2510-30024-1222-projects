@@ -43,6 +43,11 @@ fun ShoeDetailView(
     val selectedShoeSize = remember {
         mutableStateOf<ShoeSize?>(null)
     }
+
+    val isFavorite = remember {
+        mutableStateOf(shoe.isFavorite)
+    }
+
     Scaffold(
         floatingActionButtonPosition = FabPosition.Center,
         floatingActionButton = {
@@ -64,11 +69,15 @@ fun ShoeDetailView(
 
                 )
                 IconButton(
-                    onClick = onToggle,
+                    onClick = {
+                        onToggle()
+                        isFavorite.value = !isFavorite.value
+                              },
                     modifier = Modifier.align(Alignment.TopEnd)
                 ) {
+
                     Icon(
-                        if(shoe.isFavorite)
+                        if(isFavorite.value)
                             Icons.Default.Favorite
                         else
                             Icons.Default.FavoriteBorder,
@@ -96,7 +105,8 @@ fun ShoeDetailView(
                 items(shoe.sizes) { size ->
                     val isSelected = selectedShoeSize.value == size
 
-                    Box(modifier = Modifier.padding(8.dp)
+                    Box(modifier = Modifier
+                        .padding(8.dp)
                         .size(40.dp)
                         .background(color = if (isSelected) Color.Black else Color.LightGray)
                         .clickable {
