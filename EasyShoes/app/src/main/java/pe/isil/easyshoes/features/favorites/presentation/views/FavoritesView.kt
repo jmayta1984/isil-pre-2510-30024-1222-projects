@@ -7,7 +7,6 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
-import pe.isil.easyshoes.features.favorites.domain.FavoriteShoe
 import pe.isil.easyshoes.features.favorites.presentation.viewmodels.FavoritesViewModel
 
 @Composable
