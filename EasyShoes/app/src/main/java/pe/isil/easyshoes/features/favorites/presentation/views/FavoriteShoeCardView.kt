@@ -1,6 +1,5 @@
-package pe.isil.easyshoes.features.favorites.presentation
+package pe.isil.easyshoes.features.favorites.presentation.views
 
-import android.R
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth

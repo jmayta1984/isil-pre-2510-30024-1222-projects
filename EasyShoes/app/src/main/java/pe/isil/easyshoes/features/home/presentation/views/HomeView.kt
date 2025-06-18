@@ -29,7 +29,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil3.compose.rememberAsyncImagePainter
 import pe.isil.easyshoes.R
-import pe.isil.easyshoes.features.home.domain.entities.Shoe
+import pe.isil.easyshoes.features.home.domain.Shoe
 import pe.isil.easyshoes.features.home.presentation.viewmodels.HomeViewModel
 
 

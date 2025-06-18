@@ -7,8 +7,6 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import pe.isil.easyshoes.features.cart.domain.CartItem
-import pe.isil.easyshoes.features.favorites.domain.FavoriteShoe
-import pe.isil.easyshoes.features.favorites.presentation.FavoriteShoeCardView
 
 @Composable
 fun CartView() {

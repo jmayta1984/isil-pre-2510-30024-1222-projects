@@ -1,8 +1,8 @@
 package pe.isil.easyshoes.features.home.data.remote
 
 import com.google.gson.annotations.SerializedName
-import pe.isil.easyshoes.features.home.domain.entities.Shoe
-import pe.isil.easyshoes.features.home.domain.entities.ShoeSize
+import pe.isil.easyshoes.features.home.domain.Shoe
+import pe.isil.easyshoes.features.home.domain.ShoeSize
 
 data class ShoeDto(
     val id: Int,

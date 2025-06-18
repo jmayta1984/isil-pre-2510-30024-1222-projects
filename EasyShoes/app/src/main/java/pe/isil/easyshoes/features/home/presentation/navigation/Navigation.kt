@@ -25,9 +25,11 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import pe.isil.easyshoes.features.cart.presentation.CartView
-import pe.isil.easyshoes.features.favorites.presentation.FavoritesView
-import pe.isil.easyshoes.features.home.domain.entities.Shoe
+import pe.isil.easyshoes.features.favorites.presentation.views.FavoritesView
+import pe.isil.easyshoes.features.home.domain.Shoe
 import pe.isil.easyshoes.features.home.presentation.di.PresentationModule.getHomeViewModel
+import pe.isil.easyshoes.features.favorites.presentation.di.PresentationModule.getFavoriteShoeViewModel
+
 import pe.isil.easyshoes.features.home.presentation.views.HomeView
 import pe.isil.easyshoes.features.home.presentation.views.ShoeDetailView
 
@@ -74,6 +76,10 @@ fun Navigation() {
 
     val homeViewModel = getHomeViewModel()
     homeViewModel.getShoes()
+
+    val favoritesViewModel = getFavoriteShoeViewModel()
+    favoritesViewModel.getFavoriteShoes()
+
     Scaffold(
         bottomBar = {
             NavigationBar {
@@ -120,7 +126,7 @@ fun Navigation() {
                 }
             }
             composable("favorites") {
-                FavoritesView()
+                FavoritesView(favoritesViewModel)
             }
             composable("cart") {
                 CartView()

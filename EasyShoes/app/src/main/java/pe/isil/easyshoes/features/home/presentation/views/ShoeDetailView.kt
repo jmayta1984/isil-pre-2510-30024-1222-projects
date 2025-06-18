@@ -30,8 +30,8 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
-import pe.isil.easyshoes.features.home.domain.entities.Shoe
-import pe.isil.easyshoes.features.home.domain.entities.ShoeSize
+import pe.isil.easyshoes.features.home.domain.Shoe
+import pe.isil.easyshoes.features.home.domain.ShoeSize
 
 @Composable
 fun ShoeDetailView(shoe: Shoe) {

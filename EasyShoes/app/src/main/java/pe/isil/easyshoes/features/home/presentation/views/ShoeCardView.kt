@@ -13,7 +13,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
-import pe.isil.easyshoes.features.home.domain.entities.Shoe
+import pe.isil.easyshoes.features.home.domain.Shoe
 
 @Composable
 fun ShoeCardView(shoe: Shoe, onSelect: () -> Unit) {
