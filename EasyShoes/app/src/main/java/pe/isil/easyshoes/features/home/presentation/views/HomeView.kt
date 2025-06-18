@@ -43,6 +43,7 @@ fun HomeView(
     }
 
     val shoes = viewModel.shoes.collectAsState()
+    viewModel.getShoes()
 
 
     Column(modifier = Modifier

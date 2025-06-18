@@ -14,7 +14,7 @@ data class ShoeDto(
     @SerializedName("sizes_available")
     val sizes: List<ShoeSizeDto>
 ) {
-    fun toDomain(): Shoe {
+    fun toDomain(isFavorite: Boolean = false): Shoe {
         return Shoe(
             id = id,
             name = name,
@@ -22,7 +22,8 @@ data class ShoeDto(
             price = price,
             image = image,
             description = description,
-            sizes = sizes.map { it.toDomain() }
+            sizes = sizes.map { it.toDomain() },
+            isFavorite = isFavorite
         )
     }
 }

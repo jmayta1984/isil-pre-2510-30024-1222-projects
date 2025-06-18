@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.material3.FabPosition
 import androidx.compose.material3.Icon
@@ -34,7 +35,10 @@ import pe.isil.easyshoes.features.home.domain.Shoe
 import pe.isil.easyshoes.features.home.domain.ShoeSize
 
 @Composable
-fun ShoeDetailView(shoe: Shoe) {
+fun ShoeDetailView(
+    shoe: Shoe,
+    onToggle: () -> Unit
+    ) {
 
     val selectedShoeSize = remember {
         mutableStateOf<ShoeSize?>(null)
@@ -60,11 +64,14 @@ fun ShoeDetailView(shoe: Shoe) {
 
                 )
                 IconButton(
-                    onClick = {},
+                    onClick = onToggle,
                     modifier = Modifier.align(Alignment.TopEnd)
                 ) {
                     Icon(
-                        Icons.Default.FavoriteBorder,
+                        if(shoe.isFavorite)
+                            Icons.Default.Favorite
+                        else
+                            Icons.Default.FavoriteBorder,
                         contentDescription = null,
                     )
                 }

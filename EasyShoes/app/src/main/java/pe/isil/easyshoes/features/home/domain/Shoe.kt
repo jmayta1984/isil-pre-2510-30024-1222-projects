@@ -7,7 +7,8 @@ data class Shoe (
     val price: Int,
     val image: String,
     val description: String,
-    val sizes: List<ShoeSize>
+    val sizes: List<ShoeSize>,
+    val isFavorite: Boolean
 )
 
 data class ShoeSize (

@@ -18,4 +18,15 @@ class HomeViewModel(private val shoeRepository: ShoeRepository): ViewModel() {
         }
 
     }
+
+     fun toggle(shoe: Shoe){
+         viewModelScope.launch {
+             if (shoe.isFavorite) {
+                 shoeRepository.deleteShoe(shoe)
+             } else {
+                 shoeRepository.insertShoe(shoe)
+             }
+         }
+
+    }
 }

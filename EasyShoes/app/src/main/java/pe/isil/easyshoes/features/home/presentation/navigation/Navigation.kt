@@ -75,10 +75,8 @@ fun Navigation() {
     }
 
     val homeViewModel = getHomeViewModel()
-    homeViewModel.getShoes()
 
     val favoritesViewModel = getFavoriteShoeViewModel()
-    favoritesViewModel.getFavoriteShoes()
 
     Scaffold(
         bottomBar = {
@@ -122,7 +120,9 @@ fun Navigation() {
             }
             composable("product_detail") {
                 selectedShoe.value?.let { shoe ->
-                    ShoeDetailView(shoe)
+                    ShoeDetailView(shoe) {
+                        homeViewModel.toggle(shoe)
+                    }
                 }
             }
             composable("favorites") {

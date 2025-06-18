@@ -12,6 +12,7 @@ import pe.isil.easyshoes.features.favorites.presentation.viewmodels.FavoritesVie
 @Composable
 fun FavoritesView(viewModel: FavoritesViewModel) {
     val favorites = viewModel.favoriteShoes.collectAsState()
+    viewModel.getFavoriteShoes()
     Scaffold {
         padding ->
         LazyColumn (modifier = Modifier.padding()) {
