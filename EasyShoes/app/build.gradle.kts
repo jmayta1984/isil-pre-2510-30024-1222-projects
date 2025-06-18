@@ -2,6 +2,9 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+
+    // Dependency for KSP (Kotlin Symbol Processing)
+    alias(libs.plugins.ksp)
 }
 
 android {
@@ -66,4 +69,10 @@ dependencies {
     implementation(libs.androidx.lifecycle.viewmodel.compose)
     implementation(libs.retrofit)
     implementation (libs.converter.gson)
+    implementation(libs.androidx.room.runtime)
+    implementation(libs.androidx.room.ktx)
+
+    // KSP (Kotlin Symbol Processing) for Room
+    ksp(libs.androidx.room.compiler)
+
 }
