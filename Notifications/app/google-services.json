@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "508938804858",
+    "project_id": "isil-android-notifications",
+    "storage_bucket": "isil-android-notifications.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:508938804858:android:cc89aede4713c83bc365c3",
+        "android_client_info": {
+          "package_name": "pe.isil.notifications"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyALk-31SZu-fBGgz_e6PH2YBAU3cVm9jJQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
