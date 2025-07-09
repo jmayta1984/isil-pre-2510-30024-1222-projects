@@ -15,10 +15,12 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import pe.isil.movieapp.domain.Movie
+import pe.isil.movieapp.presentation.PresentationModule.getSearchMovieViewModel
 
 @Preview
 @Composable
@@ -71,7 +73,7 @@ fun Navigation() {
     { padding ->
         NavHost(navController, startDestination = "search_movie", modifier = Modifier.padding(padding)) {
             composable("search_movie") {
-                SearchMovieView { movie ->
+                SearchMovieView(viewModel = getSearchMovieViewModel() ) { movie ->
                     selectedMovie.value = movie
                     navController.navigate("detail_movie")
                 }

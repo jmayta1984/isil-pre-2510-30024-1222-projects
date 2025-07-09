@@ -1,5 +1,6 @@
 package pe.isil.movieapp.presentation
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -16,7 +17,8 @@ class SearchMovieViewModel(private val movieService: MovieService): ViewModel() 
     fun getMovies(query: String ){
 
         viewModelScope.launch {
-           val response = movieService.searchMovie(route = "movie", query = query)
+            val response = movieService.searchMovie(route = "movie", query = query)
+            Log.d("SearchMovieViewModel", response.toString())
 
             if (response.isSuccessful) {
                 response.body()?.let { moviesDto ->
