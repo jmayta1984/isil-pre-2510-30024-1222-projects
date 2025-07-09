@@ -18,6 +18,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import pe.isil.movieapp.domain.Movie
 
 @Preview
 @Composable
@@ -39,6 +40,10 @@ fun Navigation() {
 
     val selectedIndex = remember {
         mutableStateOf(0)
+    }
+
+    val selectedMovie = remember {
+        mutableStateOf<Movie?>(null)
     }
 
     Scaffold (
@@ -66,10 +71,15 @@ fun Navigation() {
     { padding ->
         NavHost(navController, startDestination = "search_movie", modifier = Modifier.padding(padding)) {
             composable("search_movie") {
-
+                SearchMovieView { movie ->
+                    selectedMovie.value = movie
+                    navController.navigate("detail_movie")
+                }
             }
             composable("detail_movie") {
-
+                selectedMovie.value?.let { movie ->
+                    MovieDetailView(movie)
+                }
             }
             composable("favorites") {
 
