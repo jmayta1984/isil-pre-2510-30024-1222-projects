@@ -19,3 +19,8 @@ data class MovieDto(
         )
     }
 }
+
+data class MoviesDto(
+    @SerializedName("results")
+    val movies: List<Movie>
+)
