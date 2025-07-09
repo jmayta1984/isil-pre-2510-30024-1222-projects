@@ -13,25 +13,23 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import pe.isil.movieapp.domain.Movie
 
-@Preview
 @Composable
 
 fun SearchMovieView(
+    viewModel: SearchMovieViewModel,
     onSelect: (Movie) -> Unit = {}
 ){
     val query = remember {
         mutableStateOf("")
     }
 
-    val movies = remember {
-        mutableStateOf(emptyList<Movie>())
-    }
+    val movies = viewModel.movies.collectAsState()
 
 
     Column(modifier = Modifier.fillMaxSize()) {
@@ -40,7 +38,9 @@ fun SearchMovieView(
             modifier = Modifier.fillMaxWidth(),
             value = query.value, onValueChange = { query.value = it })
 
-        ElevatedButton(onClick = {}, modifier =  Modifier.fillMaxWidth()) {
+        ElevatedButton(onClick = {
+            viewModel.getMovies(query.value)
+        }, modifier =  Modifier.fillMaxWidth()) {
             Text("Search")
         }
         LazyColumn {
